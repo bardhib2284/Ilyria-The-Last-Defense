@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{75AAC312-8A3C-64D5-BEF3-BF2E0A04283D}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Documents/repos/CA.DEM.RO.UPGRADE/ca.dem.ro/ca.dem.ro/App.xaml.cs">
+    <Files>
+      <File FileName="../Documents/repos/CA.DEM.RO.UPGRADE/ca.dem.ro/ca.dem.ro/App.xaml" Line="392" Column="15" />
+      <File FileName="../Documents/repos/CA.DEM.RO.UPGRADE/ca.dem.ro/ca.dem.ro/App.xaml.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2876502710720002047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2876502710720002016}
+  - component: {fileID: 2876502710720002017}
+  - component: {fileID: 3211868129685789751}
+  m_Layer: 0
+  m_Name: Arthur
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2876502710720002016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876502710720002047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 414.44904, y: 198.46855, z: 4.007165}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2876502710720002017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876502710720002047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b86dec1fde3d40eca4a29580034cf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  Name: Arthur
+  Description: 
+  CharacterIcon: {fileID: 21300010, guid: a2885e6524ffd423c88cf24908062cb1, type: 3}
+  Faction: 6
+  Role: 0
+  Stars: 5
+  currentTeam: []
+  enemyTeam: []
+  Skill_1_Icon: {fileID: 0}
+  Skill_2_Icon: {fileID: 0}
+  Skill_3_Icon: {fileID: 0}
+  Skill_4_Icon: {fileID: 0}
+  Animator: {fileID: 0}
+  Health_Start: 0
+  Health_Max: 0
+  Health_Current: 0
+  Mana_Start: 0
+  Mana_Max: 0
+  Mana_Current: 0
+  Attack_Start: 0
+  Attack_Max: 0
+  Attack_Current: 0
+  Armor_Start: 0
+  Armor_Max: 0
+  Armor_Current: 0
+  Speed_Start: 0
+  Speed_Max: 0
+  Speed_Current: 0
+  _level_Current: 1
+  Critical_Percentage: 0
+  Critical_Percentage_Max: 0
+  Critical_Damage_Percentage: 0
+  Critical_Damage_Percentage_Max: 0
+  Damage_Reduction: 0
+  Damage_Reduction_Max: 0
+  Block_Percentage: 0
+  Block_Percentage_Max: 0
+  Has_True_Hit: 0
+  Stun_Percentage_Max: 0
+  Stun_Percentage: 0
+  Petrify_Percentage_Max: 0
+  Petrify_Percentage: 0
+  Has_Immunity_To_Anything_Depending_On_The_Level: 0
+  stunnedObj: {fileID: 0}
+  Experience_Current: 0
+  _stunned: 0
+  items: []
+  IsBusy: 0
+--- !u!95 &3211868129685789751
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876502710720002047}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 140b366d8a8fb483bb5e53495c38c0a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
