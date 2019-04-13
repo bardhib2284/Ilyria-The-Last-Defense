@@ -19,7 +19,6 @@ public class GhostlingProjectile : Projectile
         if(t != null)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, t.transform.position, speed * Time.deltaTime);
-            this.transform.LookAt(t);
             if(Vector3.Distance(this.transform.position,t.transform.position) < 0.5f)
             {
                 SendMessageUpwards("DealDamageFromSpecial");

@@ -7,28 +7,30 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        if(instance != null)
+        if (instance == null)
         {
             instance = this;
         }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(this);
         if(Inventories.Count < 1)
         {
             Debug.LogError("INVENTORIES ARE EMPTY");
         }
+
     }
     public List<Inventory> Inventories;
     
     //UI METHODS
-    public void TurnOnTheHeroInventory()
+    public void CloseMainInventory()
     {
-        foreach(Inventory inventory in Inventories)
+        foreach(var inventory in Inventories)
         {
-            if(inventory is HeroInventory)
-            {
-                ((HeroInventory)inventory)?.ShowInventoryUI();
-                break;
-            }
+            inventory.HideInventoryUI();
         }
     }
+
 }

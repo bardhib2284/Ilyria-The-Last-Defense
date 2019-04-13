@@ -245,6 +245,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -256,6 +259,12 @@
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>/Users/bardh.bejtullahu/Illyria - The Last Defense/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -626,34 +635,55 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Databse\CharacterDB.cs" />
     <Compile Include="Assets\Databse\Database.cs" />
-    <Compile Include="Assets\Databse\Table.cs" />
+    <Compile Include="Assets\Databse\DBTestBehaviourScript.cs" />
+    <Compile Include="Assets\Databse\InventoryDB.cs" />
+    <Compile Include="Assets\Databse\SqliteHelper.cs" />
+    <Compile Include="Assets\HealthAnimation.cs" />
+    <Compile Include="Assets\NewMonoBehaviour.cs" />
     <Compile Include="Assets\PositionHolder.cs" />
     <Compile Include="Assets\Scripts\Character_Specific\Arthur.cs" />
     <Compile Include="Assets\Scripts\Character_Specific\Baldim.cs" />
     <Compile Include="Assets\Scripts\Character_Specific\Ghostling.cs" />
     <Compile Include="Assets\Scripts\Character_Specific\Lich.cs" />
     <Compile Include="Assets\Scripts\Character_Specific\Margaret.cs" />
+    <Compile Include="Assets\Scripts\Character_Specific\SoulReaper.cs" />
     <Compile Include="Assets\Scripts\FromCharacterToCharacterJson.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HeroShopObject.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Models\Character.cs" />
     <Compile Include="Assets\Scripts\Models\CharacterJson.cs" />
     <Compile Include="Assets\Scripts\Models\Consumable.cs" />
+    <Compile Include="Assets\Scripts\Models\ConsumableInventory.cs" />
     <Compile Include="Assets\Scripts\Models\ConsumableManager.cs" />
+    <Compile Include="Assets\Scripts\Models\DamageGUI.cs" />
     <Compile Include="Assets\Scripts\Models\DamageManager.cs" />
+    <Compile Include="Assets\Scripts\Models\Dialog.cs" />
+    <Compile Include="Assets\Scripts\Models\Effect.cs" />
     <Compile Include="Assets\Scripts\Models\Gem.cs" />
+    <Compile Include="Assets\Scripts\Models\GhostlingProjectile.cs" />
     <Compile Include="Assets\Scripts\Models\Gold.cs" />
     <Compile Include="Assets\Scripts\Models\HeroInventory.cs" />
     <Compile Include="Assets\Scripts\Models\HeroShop.cs" />
     <Compile Include="Assets\Scripts\Models\ICharacter.cs" />
     <Compile Include="Assets\Scripts\Models\IConsumable.cs" />
+    <Compile Include="Assets\Scripts\Models\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Models\Inventory.cs" />
     <Compile Include="Assets\Scripts\Models\IRewardable.cs" />
     <Compile Include="Assets\Scripts\Models\Item.cs" />
     <Compile Include="Assets\Scripts\Models\Mode.cs" />
+    <Compile Include="Assets\Scripts\Models\PassiveBuff.cs" />
+    <Compile Include="Assets\Scripts\Models\Projectile.cs" />
     <Compile Include="Assets\Scripts\Models\Reward.cs" />
+    <Compile Include="Assets\Scripts\Models\RewardManager.cs" />
     <Compile Include="Assets\Scripts\Models\Shop.cs" />
+    <Compile Include="Assets\Scripts\Models\SoulReaperProjectile.cs" />
+    <Compile Include="Assets\Scripts\Models\SqliteTest.cs" />
+    <Compile Include="Assets\Scripts\Models\StunnedEffect.cs" />
+    <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\ShopManager.cs" />
     <Compile Include="Assets\Scripts\TeamManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -661,6 +691,23 @@
     <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\link.xml" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryDark.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryLight.uss" />

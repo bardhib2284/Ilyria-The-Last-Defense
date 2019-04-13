@@ -5,13 +5,13 @@ using System.Collections;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Serializable]
 public class Character : MonoBehaviour
 {
-    [Header("CHARACTER Information")]
     //Character Information
     #region Character Information
     //Used For Character Disctinction
-    public int id;
+    public int id { get; set; }
     public string Name;
     public string Description;
     public Sprite CharacterIcon;
@@ -24,8 +24,6 @@ public class Character : MonoBehaviour
     public CharacterStars Stars;
     public List<Character> currentTeam;
     public List<Character> enemyTeam;
-    [Space]
-    [Space]
     public Sprite Skill_1_Icon;
     public Sprite Skill_2_Icon;
     public Sprite Skill_3_Icon;
@@ -69,7 +67,6 @@ public class Character : MonoBehaviour
     public int Stun_Percentage;
     public int Petrify_Percentage_Max;
     public int Petrify_Percentage;
-    [Tooltip("Tick This If The Character Has Immunity To Anything Depending On The Level Or Skills")]
     public bool Has_Immunity_To_Anything_Depending_On_The_Level;
     public GameObject stunnedObj;
     public int Level_Current
@@ -110,7 +107,7 @@ public class Character : MonoBehaviour
                 Debug.Log("Stunned applied for : " + this.name);
                 GameObject StunnedObj = Instantiate(Resources.Load<GameObject>("HeroPrefabs/Stunned_Sprite"), transform);
                 stunnedObj = StunnedObj;
-                stunnedObj.transform.position = this.transform.position + Vector3.up * 4f;
+                stunnedObj.transform.position = this.transform.position + Vector3.up * 8f;
             }
             else if (_stunned == false)
             {
@@ -120,6 +117,35 @@ public class Character : MonoBehaviour
                     Debug.Log("Stunned removed for 2 : " + this.name);
                     Destroy(stunnedObj);
                     stunnedObj = null;
+                }
+            }
+        }
+    }
+    GameObject selectObj;
+    private bool _select;
+    public bool Select
+    {
+        get { return _select; }
+        set
+        {
+            if (_select != value)
+            {
+                _select = value;
+            }
+            if (_select == true)
+            {
+                GameObject SelectObject = Instantiate(Resources.Load<GameObject>("HeroPrefabs/Select_Sprite"), transform);
+                selectObj = SelectObject;
+                selectObj.transform.position = this.transform.position + Vector3.up * 12f;
+            }
+            else if (Select == false)
+            {
+                Debug.LogError("Select UI False For : " + this.name);
+                if (selectObj != null)
+                {
+                    Debug.Log("Select UI Removed 2 :  " + this.name);
+                    Destroy(selectObj);
+                    selectObj = null;
                 }
             }
         }
@@ -143,11 +169,11 @@ public class Character : MonoBehaviour
         }
     }
     public List<Item> items;
-    public ObservableCollection<Item> Items;
+    public ObservableCollection<Item> Items { get; set; }
     #endregion
 
     public bool IsBusy;
-
+    public Character SelectedEnemy;
     protected void Start()
     {
         effects = new List<Effect>();

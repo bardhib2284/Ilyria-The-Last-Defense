@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 6499890357049022094}
   - component: {fileID: 1673621061750496720}
   - component: {fileID: 1802338987832321346}
+  - component: {fileID: 40120743640485140}
   m_Layer: 0
   m_Name: Soul Reaper
   m_TagString: Untagged
@@ -181,13 +182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45142ae92a97d41018f3af297964cb6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   Name: Soul Reaper
   Description: Soul reaper is here to reap the soul of his enemies,
   CharacterIcon: {fileID: 21300000, guid: fa005969b15a00a429d738ea0d18e7a5, type: 3}
   Faction: 0
   Role: 0
-  Stars: 5
+  Stars: 4
   currentTeam: []
   enemyTeam: []
   Skill_1_Icon: {fileID: 0}
@@ -230,6 +230,7 @@ MonoBehaviour:
   _stunned: 0
   items: []
   IsBusy: 0
+  SelectedEnemy: {fileID: 0}
   Skill_1_Description: 
   Skill_2_Description: 
   Skill_3_Description: 
@@ -239,6 +240,19 @@ MonoBehaviour:
   passiveEffectBuff: {fileID: 0}
   projectile: {fileID: 8119972784156605307, guid: 7ac00ca2fa9d34fd080edde2e6fde441,
     type: 3}
+--- !u!65 &40120743640485140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486552761013255852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.85, y: 6.99, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1773648554227681008
 PrefabInstance:
   m_ObjectHideFlags: 0

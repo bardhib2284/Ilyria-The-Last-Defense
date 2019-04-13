@@ -30,7 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3057585333445139029}
+  - {fileID: 669053689065844017}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,47 +46,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427e18902df694e2983975a895bba51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   Name: Ghostling
-  Description: Ghostling is the creatin of death, created for the only purpose to
-    kill whatever is in its way.
+  Description: Ghost of death
   CharacterIcon: {fileID: 21300000, guid: 7525be491da9749e0b99a6ea5a916273, type: 3}
-  Faction: 1
+  Faction: 0
   Role: 0
-  Stars: 4
+  Stars: 1
   currentTeam: []
   enemyTeam: []
-  Skill_1_Icon: {fileID: 0}
-  Skill_2_Icon: {fileID: 0}
-  Skill_3_Icon: {fileID: 0}
-  Skill_4_Icon: {fileID: 0}
+  Skill_1_Icon: {fileID: 21300008, guid: 5693a4561493446f7a5ec66558b45da7, type: 3}
+  Skill_2_Icon: {fileID: 21300006, guid: 411d12940a103430ea98534e023a7ca8, type: 3}
+  Skill_3_Icon: {fileID: 21300002, guid: da2c8172e399a49dfb05bf6d9b58f727, type: 3}
+  Skill_4_Icon: {fileID: 21300006, guid: 7e8fba48e72394c1c853838edc3ef4fb, type: 3}
   Animator: {fileID: 8107160202918861046}
-  Health_Start: 700
-  Health_Max: 700
+  Health_Start: 520
+  Health_Max: 520
   Health_Current: 0
   Mana_Start: 0
-  Mana_Max: 100
+  Mana_Max: 0
   Mana_Current: 0
-  Attack_Start: 78
-  Attack_Max: 78
-  Attack_Current: 255
-  Armor_Start: 5
-  Armor_Max: 5
+  Attack_Start: 80
+  Attack_Max: 80
+  Attack_Current: 0
+  Armor_Start: 3
+  Armor_Max: 3
   Armor_Current: 0
-  Speed_Start: 10
+  Speed_Start: 20
   Speed_Max: 0
   Speed_Current: 0
-  _level_Current: 15
-  Critical_Percentage: 25
-  Critical_Percentage_Max: 25
-  Critical_Damage_Percentage: 25
-  Critical_Damage_Percentage_Max: 25
+  _level_Current: 10
+  Critical_Percentage: 0
+  Critical_Percentage_Max: 0
+  Critical_Damage_Percentage: 0
+  Critical_Damage_Percentage_Max: 0
   Damage_Reduction: 0
   Damage_Reduction_Max: 0
   Block_Percentage: 0
   Block_Percentage_Max: 0
   Has_True_Hit: 0
-  Stun_Percentage_Max: 30
+  Stun_Percentage_Max: 0
   Stun_Percentage: 0
   Petrify_Percentage_Max: 0
   Petrify_Percentage: 0
@@ -96,6 +94,7 @@ MonoBehaviour:
   _stunned: 0
   items: []
   IsBusy: 0
+  SelectedEnemy: {fileID: 0}
   attackOrdered: 0
   goBackOrdered: 0
   Skill_1_Description: 
@@ -306,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec02361ec25a40b981528d1c895c893, type: 3}
---- !u!224 &3057585333445139029 stripped
+--- !u!224 &669053689065844017 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2532796915794196422, guid: fec02361ec25a40b981528d1c895c893,
     type: 3}

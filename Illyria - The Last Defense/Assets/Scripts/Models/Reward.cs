@@ -10,6 +10,7 @@ public class Reward : ScriptableObject, IRewardable
     {
         foreach(var c in consumables)
         {
+            //Debug.Log("Receiving Reward : " + c.name);
             c.Consume();
         }
     }

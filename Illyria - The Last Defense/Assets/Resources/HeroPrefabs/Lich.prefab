@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216b727ce074e416f8a4b310cacda56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   Name: Lich
   Description: Lich was a very humble man before he got cursed by a demon to be a
     lich, and now all he wants is to the king of all wraiths , once a humble man now
@@ -52,7 +51,7 @@ MonoBehaviour:
   CharacterIcon: {fileID: 21300000, guid: 9f52641cce867468ca20cfff20de7d50, type: 3}
   Faction: 0
   Role: 3
-  Stars: 4
+  Stars: 3
   currentTeam: []
   enemyTeam: []
   Skill_1_Icon: {fileID: 0}
@@ -95,6 +94,7 @@ MonoBehaviour:
   _stunned: 0
   items: []
   IsBusy: 0
+  SelectedEnemy: {fileID: 0}
 --- !u!95 &5316489752738105271
 Animator:
   serializedVersion: 3

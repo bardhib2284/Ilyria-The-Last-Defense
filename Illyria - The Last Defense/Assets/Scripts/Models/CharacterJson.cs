@@ -1,13 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using UnityEngine;
 using Newtonsoft.Json;
-public class CharacterJson
+
+[System.Serializable]
+public class CharacterJson 
 {
-    public int Id = PlayerPrefs.GetInt("CharacterID") + 1;
-    public string Name { get; set; }
-    public Character.CharacterStars Stars { get; set; }
-    public ObservableCollection<Item> Items { get; set; }
-    public int Current_Level { get; set; }
+    public int Id;
+    public string Name;
+    public int Stars;
+    public ObservableCollection<Item> Items;
+    public int Current_Level;
 
     public override string ToString()
     {

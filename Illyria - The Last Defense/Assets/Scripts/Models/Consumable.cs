@@ -1,9 +1,24 @@
 ﻿using UnityEngine;
 
-public class Consumable : ScriptableObject, IConsumable
+[System.Serializable]
+public class Consumable : IConsumable
 {
+    public int Id;
+    public string Name;
     public int Value;
-    public Sprite Icon;
+    public string Icon;
+
+    public Consumable()
+    {
+
+    }
+    public Consumable(int id,string name,int value,string icon)
+    {
+        Id = id;
+        Name = name;
+        Value = value;
+        Icon = icon;
+    }
 
     public Consumable(int value)
     {
@@ -12,7 +27,7 @@ public class Consumable : ScriptableObject, IConsumable
 
     public virtual void Consume()
     {
-        AddValueToManager();
+        AddToInventory();
     }
 
     public virtual void Dispose()
@@ -20,8 +35,9 @@ public class Consumable : ScriptableObject, IConsumable
         throw new System.Exception("NOT IMPLEMENTED;");
     }
 
-    public virtual void AddValueToManager()
+    public virtual void AddToInventory()
     {
-        throw new System.Exception("NOT IMPLEMENTED;");
+        ConsumableInventory.instance.AddConsumable(this);
     }
+
 }

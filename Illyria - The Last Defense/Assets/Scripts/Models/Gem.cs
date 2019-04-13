@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
-[CreateAssetMenu(fileName = "Gem", menuName = "Consumable/Gem", order = 3)]
+
 public class Gem : Consumable
 {
+    public Gem()
+    {
+    }
+
     public Gem(int value) : base(value)
     {
     }
 
-    public override void AddValueToManager()
+    public Gem(int id, string name, int value, string icon) : base(id, name, value, icon)
     {
-        Consumable managerGold = FindObjectOfType<ConsumableManager>().consumables.Find(x => x is Gem);
-        managerGold.Value += this.Value;
     }
 
-    public override void Consume()
+    public override void AddToInventory()
     {
-        base.Consume();
+        ConsumableManager.instance.AddConsumable(this as Gem);
     }
 
     public override void Dispose()
@@ -27,7 +29,7 @@ public class Gem : Consumable
     {
         if(other is Consumable)
         {
-            if(other is Gem)
+            if(other.GetType() == typeof(Gem))
             {
                 return true;
             }

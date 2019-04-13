@@ -93,13 +93,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dadbf44fc8594bd886b2bb049f9ef6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   Name: Margaret
   Description: 
   CharacterIcon: {fileID: 21300008, guid: a2885e6524ffd423c88cf24908062cb1, type: 3}
   Faction: 0
   Role: 0
-  Stars: 2
+  Stars: 5
+  currentTeam: []
+  enemyTeam: []
+  Skill_1_Icon: {fileID: 0}
+  Skill_2_Icon: {fileID: 0}
+  Skill_3_Icon: {fileID: 0}
+  Skill_4_Icon: {fileID: 0}
   Animator: {fileID: 0}
   Health_Start: 350
   Health_Max: 0
@@ -131,11 +136,12 @@ MonoBehaviour:
   Petrify_Percentage_Max: 0
   Petrify_Percentage: 0
   Has_Immunity_To_Anything_Depending_On_The_Level: 0
+  stunnedObj: {fileID: 0}
   Experience_Current: 0
   _stunned: 0
-  _dead: 0
   items: []
-  _isBusy: 0
+  IsBusy: 0
+  SelectedEnemy: {fileID: 0}
 --- !u!95 &4439594352693884609
 Animator:
   serializedVersion: 3

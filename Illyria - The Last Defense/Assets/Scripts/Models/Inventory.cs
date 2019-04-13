@@ -5,12 +5,12 @@ public abstract class Inventory : MonoBehaviour
 
     public virtual void ShowInventoryUI()
     {
-        throw new System.NotImplementedException();
+        this.gameObject.SetActive(true);
     }
 
     public virtual void HideInventoryUI()
     {
-        throw new System.NotImplementedException();
+        this.gameObject.SetActive(false);
     }
 
-}   
+}

@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Linq;
-[CreateAssetMenu(fileName = "Gold", menuName = "Consumable/Gold", order = 3)]
+
 public class Gold : Consumable
 {
     public Gold(int value) : base(value)
     {
     }
 
+    public Gold()
+    {
+    }
+
+    public Gold(int id, string name, int value, string icon) : base(id, name, value, icon)
+    {
+    }
+
     public override void Consume()
     {
-        AddValueToManager();
+        AddToInventory();
     }
 
     public override void Dispose()
@@ -22,17 +30,16 @@ public class Gold : Consumable
         return base.ToString();
     }
 
-    public override void AddValueToManager()
+    public override void AddToInventory()
     {
-        Consumable managerGold = FindObjectOfType<ConsumableManager>().consumables.Find(x => x is Gold);
-        managerGold.Value += this.Value;
+        ConsumableManager.instance.AddConsumable(this as Gold);
     }
 
     public override bool Equals(object other)
     {
         if (other is Consumable)
         {
-            if (other is Gold)
+            if (other.GetType() == typeof(Gold))
             {
                 return true;
             }

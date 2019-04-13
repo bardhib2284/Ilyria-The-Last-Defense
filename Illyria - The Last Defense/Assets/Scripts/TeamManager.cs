@@ -4,29 +4,20 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 {
-    public static Table characters_Table; // => Database.GetCharacters
+    public List<CharacterJson> Characters;
 
     private void Start()
     {
-        characters_Table = Resources.Load<Table>(Database.All_Characters_Table_Path);
-    }
-    private List<CharacterJson> Characters;
-
-    public void AddANewCharacterToTheTeam(CharacterJson c)
-    {
-        Debug.Log(characters_Table);
-        Debug.Log(c);
-        if(characters_Table.content == null)
-        {
-            characters_Table.content = new List<CharacterJson>();
-        }
-        characters_Table.content.Add(c);
-        Debug.Log(characters_Table.content.Count);
+        StartCoroutine("GetCharactersFromDatabase");
     }
 
-    public List<CharacterJson> GetCharacters()
+    public void AddANewCharacterToTheTeam(Character c)
     {
-        Debug.Log("Getting Characters");
-        return FindObjectOfType<Database>().All_Characters_Table.content;
+        DBTestBehaviourScript.instance.AddCharacter(c);
+    }
+
+    public IEnumerator GetCharactersFromDatabase()
+    {
+        yield return Characters = DBTestBehaviourScript.instance.ReadCharacters();
     }
 }

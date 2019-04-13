@@ -5,12 +5,13 @@ using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 
-public class HeroShop : Shop
+public class HeroShop : Shop 
 {
     private ConsumableManager cm;
     public int GoldHeroValue = 5000;
     public int GemHeroValue = 250;
     public GameObject Hero_Summoning_Panel_UI;
+    [HideInInspector]
     public GameObject Hero_Summoning_Panel_UI_Active_Template;
     public bool IsBusy
     {
@@ -23,6 +24,9 @@ public class HeroShop : Shop
         }
 
     }
+
+    Consumable goldConsumable => ConsumableInventory.instance.GetConsumableByName("gold");
+    Consumable gemConsumable => ConsumableInventory.instance.GetConsumableByName("gem");
     private void Awake()
     {
         cm = FindObjectOfType<ConsumableManager>();
@@ -33,12 +37,13 @@ public class HeroShop : Shop
         transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate
         {
             Debug.Log("omg");
-            UseConsumable((Gold)cm.consumables.Find(x => x is Gold), GoldHeroValue);
+            
+            UseConsumable(goldConsumable, GoldHeroValue);
         });
         transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate
         {
             Debug.Log("omg");
-            UseConsumable((Gem)cm.consumables.Find(x => x is Gem), GemHeroValue);
+            UseConsumable(gemConsumable, GemHeroValue);
         });
     }
 
@@ -52,13 +57,14 @@ public class HeroShop : Shop
         Debug.LogError("HERO SHOP STATE : " + IsBusy);
         if(!IsBusy)
         {
-            if (consumable is Gem)
+            Consumable c = consumable as Consumable;
+            if (c == gemConsumable)
             {
-                PayWithGem(consumable as Gem, value);
+                PayWithGem(c, value);
             }
-            else if (consumable is Gold)
+            else if (c == goldConsumable)
             {
-                PayWithGold(consumable as Gold, value);
+                PayWithGold(c, value);
             }
         }
     }
@@ -66,15 +72,20 @@ public class HeroShop : Shop
     // Explicit predicate delegate.
     private static bool FindHero(MonoBehaviour c, int stars)
     {
-
-        if ((int)((Character)c).Stars == stars)
+        if(c is Character)
         {
-            return true;
+            if ((int)((Character)c).Stars == stars)
+            {
+                return true;
+            }
+            else
+            {
+                Dialog.instance.CreateAlertDialog("The Current Character " + ((Character)c).Name + " has " + ((Character)c).Stars + " and the required stars are " + stars, "Ok");
+                return false;
+            }
         }
-        else
-        {
-            return false;
-        }
+        Dialog.instance.CreateAlertDialog("This monobehaviour is not character","Ok");
+        return false;
 
     }
 
@@ -88,61 +99,69 @@ public class HeroShop : Shop
         this.gameObject.SetActive(false);
     }
     #region PAYING METHODS
-    public void PayWithGold(Gold consumable, int value)
+    public void PayWithGold(Consumable consumable, int value)
     {
-        Debug.Log("Player Requested To Buy In The Hero Shop with " + consumable);
+        Debug.Log("Player Requested To Buy In The Hero Shop with " + consumable.Name);
         bool payed = cm.UseConsumable(consumable, value);
         int starsByRandom = 0;
-        if (payed)
+        if(payed)
         {
-            Debug.Log("Played had enough " + consumable + " to buy the hero ");
-            starsByRandom = UnityEngine.Random.Range(0, 100);
-            if (starsByRandom >= 0 && starsByRandom <= 30)
+            try
             {
-                starsByRandom = 1;
-            }
-            else if (starsByRandom >= 31 && starsByRandom <= 60)
-            {
-                starsByRandom = 2;
-            }
-            else if (starsByRandom >= 61 && starsByRandom <= 80)
-            {
-                starsByRandom = 3;
-            }
-            else if (starsByRandom >= 81 && starsByRandom <= 95)
-            {
-                starsByRandom = 4;
-            }
-            else if (starsByRandom >= 96 && starsByRandom <= 99)
-            {
-                starsByRandom = 5;
-            }
-            Debug.Log("He got a " + starsByRandom + " star hero, now randoming the hero");
-            List<MonoBehaviour> charactersByStars = shopContents.FindAll(x => FindHero(x, starsByRandom));
-            int characterByRandom = UnityEngine.Random.Range(0, charactersByStars.Count);
-            Character newCharacter = (Character)charactersByStars[characterByRandom];
-            Hero_Summoning_Panel_UI_Active_Template = Instantiate(Hero_Summoning_Panel_UI, this.transform);
-            Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(0).GetComponent<Image>().sprite = newCharacter.CharacterIcon;
-            Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("FactionIcons/" + newCharacter.Faction.ToString());
-            Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetComponent<Text>().text = newCharacter.Name;
+                Debug.Log("Played had enough " + consumable + " to buy the hero ");
+                starsByRandom = UnityEngine.Random.Range(0, 100);
+                if (starsByRandom >= 0 && starsByRandom <= 30)
+                {
+                    starsByRandom = 1;
+                }
+                else if (starsByRandom >= 31 && starsByRandom <= 60)
+                {
+                    starsByRandom = 2;
+                }
+                else if (starsByRandom >= 61 && starsByRandom <= 80)
+                {
+                    starsByRandom = 3;
+                }
+                else if (starsByRandom >= 81 && starsByRandom <= 95)
+                {
+                    starsByRandom = 4;
+                }
+                else if (starsByRandom >= 96 && starsByRandom <= 99)
+                {
+                    starsByRandom = 5;
+                }
+                Debug.Log("He got a " + starsByRandom + " star hero, now randoming the hero");
+                List<MonoBehaviour> charactersByStars = shopContents.FindAll(element => FindHero(element,starsByRandom));
+                int characterByRandom = UnityEngine.Random.Range(0, charactersByStars.Count);
+                Dialog.instance.CreateAlertDialog(charactersByStars.Count + " characters by count and the randomChar index " + characterByRandom,"Ok");
+                Character newCharacter = (Character)charactersByStars[characterByRandom];
+                Hero_Summoning_Panel_UI_Active_Template = Instantiate(Hero_Summoning_Panel_UI, this.transform);
+                Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetComponent<Image>().sprite = newCharacter.CharacterIcon;
+                Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("FactionIcons/" + newCharacter.Faction.ToString());
+                Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(2).GetComponent<Text>().text = newCharacter.Name;
 
-            for (int i = 0; i < (int)newCharacter.Stars; i++)
+                for (int i = 0; i < (int)newCharacter.Stars; i++)
+                {
+                    Instantiate(Resources.Load<GameObject>("UI/Star"), Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetChild(0));
+                }
+                Button[] buttons = Hero_Summoning_Panel_UI_Active_Template.transform.GetComponentsInChildren<Button>();
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    buttons[i].onClick.AddListener(() => Destroy(Hero_Summoning_Panel_UI_Active_Template, 0.2f));
+                }
+                Debug.Log("The Won Character : " + newCharacter);
+                FindObjectOfType<TeamManager>().AddANewCharacterToTheTeam(newCharacter);
+            }catch(Exception e)
             {
-                Instantiate(Resources.Load<GameObject>("UI/Star"), Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(0).GetChild(0));
+                Dialog.instance.CreateAlertDialog(e.Message,"Ok");
+                return;
             }
-            Button[] buttons = Hero_Summoning_Panel_UI_Active_Template.transform.GetComponentsInChildren<Button>();
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                buttons[i].onClick.AddListener(() => Destroy(Hero_Summoning_Panel_UI_Active_Template, 0.2f));
-            }
-            Debug.Log("The Won Character : " + newCharacter);
-            FindObjectOfType<TeamManager>().AddANewCharacterToTheTeam(FromCharacterToCharacterJson.ConvertTo(newCharacter));
-            int currentID = PlayerPrefs.GetInt("CharacterID");
-            PlayerPrefs.SetInt("CharacterID", currentID + 1);
+
         }
+
     }
 
-    public void PayWithGem(Gem consumable, int value)
+    public void PayWithGem(Consumable consumable, int value)
     {
         Debug.Log("Player Requested To Buy In The Hero Shop with " + consumable);
         bool payed = cm.UseConsumable(consumable, value);
@@ -167,7 +186,29 @@ public class HeroShop : Shop
             List<MonoBehaviour> charactersByStars = shopContents.FindAll(x => FindHero(x, starsByRandom));
             int characterByRandom = UnityEngine.Random.Range(0, charactersByStars.Count);
             Character newCharacter = (Character)charactersByStars[characterByRandom];
+            Hero_Summoning_Panel_UI_Active_Template = Instantiate(Hero_Summoning_Panel_UI, this.transform);
+            Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetComponent<Image>().sprite = newCharacter.CharacterIcon;
+            Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("FactionIcons/" + newCharacter.Faction.ToString());
+            Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(2).GetComponent<Text>().text = newCharacter.Name;
+
+            for (int i = 0; i < (int)newCharacter.Stars; i++)
+            {
+                Instantiate(Resources.Load<GameObject>("UI/Star"), Hero_Summoning_Panel_UI_Active_Template.transform.GetChild(1).GetChild(0));
+            }
+            Button[] buttons = Hero_Summoning_Panel_UI_Active_Template.transform.GetComponentsInChildren<Button>();
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].onClick.AddListener(() => Destroy(Hero_Summoning_Panel_UI_Active_Template, 0.2f));
+            }
             Debug.Log("The Won Character : " + newCharacter);
+            FindObjectOfType<TeamManager>().AddANewCharacterToTheTeam(newCharacter);
+            int currentID = PlayerPrefs.GetInt("CharacterID");
+            PlayerPrefs.SetInt("CharacterID", currentID + 1);
+        }
+        else
+        {
+            var result = FindObjectOfType<Dialog>().CreateActionDialog("You Dont Have Enough Gems To Summon A New Heroic Hero, Do You Wanna Buy Gems?", "No","Yes");
+            Debug.Log(result + " RESULT ");
         }
     }
     #endregion

@@ -19,4 +19,4 @@ MonoBehaviour:
   - {fileID: 8107160202918861045, guid: 960ded95f07284f0e946b4f2dd350194, type: 3}
   - {fileID: 8107160202918861045, guid: 960ded95f07284f0e946b4f2dd350194, type: 3}
   - {fileID: 8107160202918861045, guid: 960ded95f07284f0e946b4f2dd350194, type: 3}
-  Rewards: {fileID: 0}
+  Rewards: {fileID: 11400000, guid: 379d71a3e13954691afff35f305af3b8, type: 2}

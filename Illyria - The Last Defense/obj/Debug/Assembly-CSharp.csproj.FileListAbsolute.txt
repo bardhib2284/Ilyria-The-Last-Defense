@@ -359,3 +359,4 @@
 /Users/bardh.bejtullahu/Illyria - The Last Defense/obj/Debug/Assembly-CSharp.pdb
 /Users/bardh.bejtullahu/Illyria - The Last Defense/Temp/bin/Debug/Newtonsoft.Json.dll
 /Users/bardh.bejtullahu/Illyria - The Last Defense/Temp/bin/Debug/Newtonsoft.Json.xml
+/Users/bardh.bejtullahu/Illyria - The Last Defense/Temp/bin/Debug/Mono.Data.Sqlite.dll
